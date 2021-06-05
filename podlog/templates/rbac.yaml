@@ -1,0 +1,21 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "podlog.serviceAccountName" . }}
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces", "pods", "replicasets", "namespaces/status"]
+    verbs: ["*"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "podlog.serviceAccountName" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "podlog.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ include "podlog.serviceAccountName" . }}
+  apiGroup: rbac.authorization.k8s.io
