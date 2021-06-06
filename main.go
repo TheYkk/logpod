@@ -19,7 +19,7 @@ import (
 var (
 	kubeconfig = flag.String("kubeconfig", os.Getenv("KUBECONFIG"), "absolute path to the kubeconfig file")
 	annotation = Getenv("WATCH_ANNOTATION", "timestamp")
-	namespaces = Getenv("WATCH_NAMESPACE", "")
+	namespaces = Getenv("WATCH_NAMESPACES", "")
 )
 
 func main() {
